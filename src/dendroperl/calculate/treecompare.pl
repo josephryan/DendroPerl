@@ -511,3 +511,50 @@ sub _TreeShapeKernelNodeCache {
 
 1;
 
+##############################################################################
+# package AssemblageInducedTreeShapeKernel
+##############################################################################
+package AssemblageInducedTreeShapeKernel;
+
+sub new {    # def __init__
+}
+
+sub _euclidean_distance {
+}
+
+sub remove_from_cache {
+}
+
+sub update_assemblage_induced_tree_cache {
+}
+
+sub __call__ {
+}
+
+sub robinson_foulds_distance {
+}
+
+sub mason_gamer_kellogg_score {
+}
+
+sub _get_length_diffs {
+}
+
+sub _bipartition_difference {
+}
+
+##############################################################################
+# package AssemblageInducedTreeManager
+##############################################################################
+package AssemblageInducedTreeManager;
+
+sub new {   #__init__
+}
+
+sub remove_from_cache {
+}
+
+sub generate_induced_trees {
+}
+
+
