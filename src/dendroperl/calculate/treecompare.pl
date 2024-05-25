@@ -404,7 +404,6 @@ sub _get_length_diffs {
         push @length_diffs, [$value1, $value2];
         $bipartition_length_diffs->{$bipartition} = $length_diffs[-1];
     }
-#ZZZ LEFT OFF HERE. UNCHECKED chatGPT code below
     if (%bipartition_length_diff_map) {
         return (\@length_diffs, $bipartition_length_diffs);
     } else {
@@ -425,20 +424,27 @@ sub _get_length_diffs {
 sub _bipartition_difference {
     my $tree1                   = shift;
     my $tree2                   = shift;
-    my $dist_fn                 = shift;
+    my $dist_fn                 = shift; # default is "length" in DendroPy
     my $edge_weight_attr        = shift;
-    my $value_type              = shift;
+    my $value_type              = shift; # default is "float" in Dendropy
     my $is_bipartitions_updated = shift;  # default is "False" in DendroPy
 
     # set default(s)
     $edge_weight_attr = "length" unless ($edge_weight_attr);
     $value_type       = 'float'  unless ($value_type);
 
+    # Returns distance between two trees, each represented by a dictionary of
+    # bipartitions (as bipartition_mask strings) to edges, using ``dist_fn`` to calculate the
+    # distance based on ``edge_weight_attr`` of the edges. ``dist_fn`` is a function
+    # that takes a list of pairs of values, where the values correspond to the edge
+    # lengths of a given bipartition on tree1 and tree2 respectively.
+    
     my $length_diffs  = _get_length_diffs($tree1,$tree2,$edge_weight_attr,
                                           $value_type,$is_bipartitions_updated);
     return dist_fn($length_diffs);
 }
 
+#ZZZ LEFT OFF HERE. UNCHECKED chatGPT code below
 ##############################################################################
 # sub float
 ##############################################################################
@@ -462,12 +468,12 @@ sub float {
     return $num;
 }
 
+# ZZZ: JOE: I'm not 100% sure what's happening in this chatGPT-generated code
 ##############################################################################
 # package TreeShapeKernel
 ##############################################################################
 package TreeShapeKernel;
 
-# ZZZ: JOE: I'm not 100% sure what's happening in this chatGPT-generated code
 my $TreeShapeKernelNodeCache = __PACKAGE__->namedtuple("_TreeShapeKernelNodeCache",
     ["production", "index", "edge_lengths", "sum_of_square_edge_lengths"]);
 
